@@ -1,0 +1,386 @@
+---
+title: "Actividad Evaluada 3"
+format: html
+editor: visual
+---
+
+## Pregunta 1 
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de $50mm$ y una varianza $10.24mm$. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 6 operaciones al mes (30 días $\approx$ 4 semanas ) según una distribución Poisson. 
+
+La clínica sabe que el 35% de los pacientes que se operan lo hacen por sistema de urgencia y que, si la longitud de la operación es mayor a 56mm, se presentarán problemas en el postoperatorio.
+
+#### Pregunta 1-a
+
+Si un niño es operado de apendicitis en la clínica, ¿cuál es la probabilidad que la longitud de la operación sea mayor a 53.9 mm?
+
+```{r p1a,echo=TRUE}
+mux = 50 ; sdx = sqrt(10.24)
+round(pnorm(53.9,mux,sdx,lower.tail = F),3)
+```
+
+#### Pregunta 1-b
+
+Si un niño es operado de apendicitis en la clínica, ¿cuál es la probabilidad que la longitud de la operación sea a lo más 51.3 mm?
+
+```{r p1b,echo=TRUE}
+mux = 50 ; sdx = sqrt(10.24)
+round(pnorm(51.3,mux,sdx),3)
+```
+
+#### Pregunta 1 - c
+
+Si un niño es operado de apendicitis en la clínica, ¿cuál es la probabilidad que la longitud de la operación  varíe entre 48.1 y 52.3 mm, ambos valores inclusive?
+
+```{r p1c,echo=TRUE}
+mux = 50 ; sdx = sqrt(10.24)
+round(pnorm(52.3,mux,sdx) -pnorm(48.1,mux,sdx) ,3)
+```
+
+#### Pregunta 1- d
+
+Si un niño es operado de apendicitis en la clínica, ¿cuál es la probabilidad que la longitud de la operación supere los 51.4 mm o sea inferior a 47.3mm?
+
+```{r p1d,echo=TRUE}
+mux = 50 ; sdx = sqrt(10.24)
+round(pnorm(51.4,mux,sdx,lower.tail = F) + pnorm(47.3,mux,sdx) ,3)
+```
+
+## Pregunta 2
+
+#### Problema - a
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de $56mm$ y una varianza de $12.25mm^2$ . Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 6 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson.
+
+La clínica sabe que el 15% de los pacientes que se operan lo hacen por sistema de urgencia y que, si la longitud de la operación es mayor a 61.3mm, se presentarán problemas en el postoperatorio.
+
+¿Cuál es la probabilidad que el paciente de la tercera operación sea el primero en presentar problemas en el postoperatorio?
+
+```{r p2a,echo=TRUE}
+mux = 56 ; sdx= sqrt(12.25)
+x = 61.3
+p.oper <- pnorm(x,mux,sdx,lower.tail = F)
+#p.oper
+y = 2
+round(dgeom(y,prob = p.oper),3)
+```
+
+#### Problema - b
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 52mm y una desviación estándar de 4mm. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 8 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+La clínica sabe que el 15% de los pacientes que se operan lo hacen por sistema de urgencia y que, si la longitud de la operación es mayor a 60.1mm, se presentarán problemas en el postoperatorio. Cuando se alcance la cuota de 3 operaciones con problemas en el postoperatorio, la clínica debe contratar más personal de apoyo.
+
+Calcule la probabilidad que el primer paciente en presentar problemas en el postoperatorio sea el cuarto operado:
+
+```{r p2b,echo=TRUE}
+mux = 52 ; sdx= sqrt(16)
+x = 60.1
+p.oper <- pnorm(x,mux,sdx,lower.tail = F)
+#p.oper
+y = 3
+round(dgeom(y,prob = p.oper),3)
+```
+
+#### Problema - c
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 52mm y una desviación estándar de 4mm. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 8 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+La clínica sabe que el 15% de los pacientes que se operan lo hacen por sistema de urgencia y que, si la longitud de la operación es mayor a 60.1mm, se presentarán problemas en el postoperatorio. Cuando se alcance la cuota de 3 operaciones con problemas en el postoperatorio, la clínica debe contratar más personal de apoyo.
+
+Calcule la probabilidad que el segundo paciente operado sea el primero que lo hace por sistema de urgencia es:
+
+```{r p2c,echo=TRUE}
+p.oper = 0.15
+y = 1
+round(dgeom(y,prob = p.oper),3)
+```
+
+#### Problema - d
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 56mm y una varianza \$12.25mm2\$. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 6 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+La clínica sabe que el 15% de los pacientes que se operan lo hacen por sistema de urgencia y que, si la longitud de la operación es mayor a 59mm, se presentarán problemas en el postoperatorio. Cuando se alcance la cuota de 3 operaciones con problemas en el postoperatorio, la clínica debe contratar más personal de apoyo.
+
+¿Cuál es la probabilidad que deban realizar a lo más 5 operaciones antes de que la clínica deba contratar más personal?
+
+```{r p2d,echo=TRUE}
+mux = 56 ; sdx= sqrt(12.25)
+x = 59
+p.oper <- pnorm(x,mux,sdx,lower.tail = F)
+#p.oper
+y = 5
+round(pnbinom(y,size=3,prob = p.oper),3)
+```
+
+#### Problema - e
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 50mm y una varianza $9.00mm^2$. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 6 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+La clínica sabe que el 15% de los pacientes que se operan lo hacen por sistema de urgencia y que, si la longitud de la operación es mayor a 55mm, se presentarán problemas en el postoperatorio. Cuando se alcance la cuota de 2 operaciones con problemas en el postoperatorio, la clínica debe contratar más personal de apoyo.
+
+¿Cuál es la probabilidad que deban realizar 3 operaciones antes de que la clínica deba contratar más personal?
+
+```{r p2e,echo=TRUE}
+mux = 50 ; sdx= sqrt(9)
+x = 55
+p.oper <- pnorm(x,mux,sdx,lower.tail = F)
+#p.oper
+y = 3
+round(dnbinom(y,size=2,prob = p.oper),3)
+```
+
+## Pregunta 3
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 50mm y una varianza 9mm2. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 6 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+#### Pregunta  - a
+
+Calcule la probabilidad que en la clínica, en una semana, se realicen más de 2 operaciones de apendicitis en niños.
+
+```{r p3a,echo=TRUE}
+x = 2
+oa.lambda <- 6/4
+round(ppois(x,lambda = oa.lambda,lower.tail = F) ,3)
+```
+
+#### Pregunta - b
+
+Calcule la probabilidad que en la clínica, en una semana, se realicen al menos 4 operaciones de apendicitis en niños.
+
+```{r p3b,echo=TRUE}
+x = 4
+oa.lambda <- 10/4
+round(ppois(x,lambda = oa.lambda,lower.tail = F) + dpois(x,lambda = oa.lambda) ,3)
+```
+
+#### Pregunta - c
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 55mm y una varianza 16.00mm2. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 12 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+Calcule la probabilidad que en la clínica, en 2 semanas, se realicen menos de 2 ó más de 4 operaciones de apendicitis en niños
+
+```{r p3c,echo=TRUE}
+oa.lambda <- (12/4)*2
+menos <- 2
+mas <-4
+round(ppois(menos -1 ,lambda = oa.lambda) + ppois(mas,oa.lambda,lower.tail = F),3) 
+
+```
+
+#### Pregunta - d
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 55mm y una varianza 16.00mm2. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 20 operaciones al mes (30 días ![LaTeX: \\approx](https://cursos.canvas.uc.cl/equation_images/%255Capprox?scale=1 "\approx"){alt="LaTeX: \\approx"}≈ 4 semanas ) según una distribución Poisson. 
+
+Calcule la probabilidad que en la clínica, en 3 semanas, se realicen al menos 18 operaciones de apendicitis en niños.
+
+```{r p3d, echo=TRUE}
+oa.lambda <- (20/4)*3
+almenos <- 18
+round(ppois(almenos,lambda = oa.lambda,lower.tail = F) + dpois(almenos,oa.lambda),3) 
+```
+
+## Pregunta 4
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 55mm y una varianza 16.00mm2. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 4 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson.
+
+#### Problema - a
+
+...si la longitud de la operación es mayor a 54.7mm, se presentarán problemas en el postoperatorio...
+
+En 7 operaciones de apendicitis que se realizan, ¿cuál es la probabilidad que en menos de 4 de ellas se presenten problemas en el postoperatorio?
+
+```{r p4a,echo=TRUE}
+mux = 55 ; sdx= sqrt(16)
+x = 54.7
+p.oper <- pnorm(x,mux,sdx,lower.tail = F)
+#p.oper
+nn = 7 ; 
+y=4
+round(pbinom(y-1,size=nn,prob = p.oper),3)
+```
+
+#### Problema - b
+
+La clínica sabe que el 15% de los pacientes que se operan lo hacen por sistema de urgencia ...
+
+En 7 operaciones de apendicitis que se realizan, ¿cuál es la probabilidad que en al menos 3 de ellas los pacientes se operan por sistema de urgencia?
+
+```{r p4b,echo=TRUE}
+p.oper <- 0.15
+#p.oper
+nn = 7 ; 
+y=3
+round(pbinom(y,size=nn,prob = p.oper,lower.tail = F)+dbinom(y,nn,p.oper),3)
+
+```
+
+#### Problema - c
+
+La clínica sabe que el 35% de los pacientes que se operan lo hacen por sistema de urgencia...
+
+¿Cuál es la probabilidad que entre 3 y 7 operaciones (ambos inclusive) se realicen por sistema de urgencia, de un total de 12 operaciones realizadas?
+
+```{r p4c,echo=TRUE}
+p.oper <- 0.35
+#p.oper
+nn = 12 
+y.b <- 3 #bajo
+y.a <- 7 #alto
+round(pbinom(y.a,size=nn,prob = p.oper) - pbinom(y.b-1,nn,p.oper),3)
+```
+
+#### Problema - d
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 50mm y una varianza 16.00mm2. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 4 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+...si la longitud de la operación es mayor a 53.8mm, se presentarán problemas en el postoperatorio...
+
+De un total de 10 operaciones realizadas, ¿cuál es la probabilidad que menos de 3 o más de 7 operaciones presenten problemas en el postoperatorio?
+
+```{r p4d,echo=TRUE}
+mux = 50 ; sdx= sqrt(16)
+x = 53.8
+p.oper <- pnorm(x,mux,sdx,lower.tail = F)
+#p.oper
+nn = 10 ; 
+y.b <- 3 #bajo
+y.a <- 7 #alto
+round(pbinom(y.b-1,size=nn,prob = p.oper) + pbinom(y.a,nn,p.oper,lower.tail = F),3)
+
+
+```
+
+### Pregunta 5
+
+#### Problema - a
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 50mm y una varianza 16.00mm2. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 4 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+...
+
+a\) El 23.5% de las operaciones de apendicitis con mayor longitud, miden más de x mm. Determine el valor de x.
+
+```{r p5aa,echo=TRUE}
+mux = 50; sdx=sqrt(16)
+pr = 1-0.235
+round(qnorm(pr,mean = mux,sd=sdx),3)
+```
+
+b\) Si la longitud de la operación de la apendicitis es menor a 51.4mm, el tiempo de operación es de aproximadamente 1.5h, mientras que si la longitud de la operación supera los 56mm, el tiempo de operación es de aproximadamente 2.5h. En cualquier otro caso, el tiempo es de aproximadamente 2.0h. Determine el valor esperado del tiempo de duración de la operación.
+
+```{r p5ab,echo=TRUE}
+umbrales <- c(51.4,56)
+F.umbrales <- c(
+  pnorm(umbrales[1],mux,sdx),
+  pnorm(umbrales[2],mux,sdx)
+)
+F.umbrales
+horas <- c(1.5,2,2.5)
+prob.horas <- c(F.umbrales[1],F.umbrales[2]-F.umbrales[1],1-F.umbrales[2])
+#prob.horas #distribución prob. horas
+#sum(prob.horas) #asegurar que sumen 1
+e.horas <- sum(horas*prob.horas)
+round(e.horas,3)
+```
+
+#### Problema - b
+
+En una clínica se ha estudiado que la longitud de la operación de apendicitis en niños sigue una distribución normal con media de 54mm y una varianza 12.25mm2. Se sabe además que las operaciones de apendicitis en niños ocurren a una tasa de 4 operaciones al mes (30 días ≈ 4 semanas ) según una distribución Poisson. 
+
+...
+
+Cada uno de los valores pedidos deben ser ingresados con 3 decimales:
+
+a\) Si la longitud de la operación de la apendicitis es menor a 53mm, el tiempo de operación es de aproximadamente 1.3h, mientras que si la longitud de la operación supera los 56mm, el tiempo de operación es de aproximadamente 3.5h. En cualquier otro caso, el tiempo es de aproximadamente 2.1h. Determine el valor esperado del tiempo de duración de la operación.
+
+```{r p5ba,echo=TRUE}
+mux = 54; sdx=sqrt(12.25)
+umbrales <- c(53,56)
+F.umbrales <- c(
+  pnorm(umbrales[1],mux,sdx),
+  pnorm(umbrales[2],mux,sdx)
+)
+F.umbrales
+horas <- c(1.3,2.1,3.5)
+prob.horas <- c(F.umbrales[1],F.umbrales[2]-F.umbrales[1],1-F.umbrales[2])
+#prob.horas #dist. horas
+#sum(prob.horas) #suma 1
+e.horas <- sum(horas*prob.horas)
+round(e.horas,3)
+```
+
+b\) El 23.5% de las operaciones de apendicitis miden a lo más x mm. Determine el valor de x.
+
+```{r p1bb,echo=TRUE}
+pr = 0.235
+mux = 54
+sdx=sqrt(12.25)
+round(qnorm(pr,mean = mux,sd=sdx),3)
+```
+
+### Pregunta 6
+
+#### Problema - a
+
+En la farmacia de la clínica, los turnos son de 24h y tal que una persona no puede tener dos turnos seguidos.
+
+La selección de turnos para el fin de semana se hace entre los técnicos en enfermería (TENS) y el personal suplente (PS). La clínica cuenta con 20 TENS y 12 PS.
+
+¿Cuál es la probabilidad que para el siguiente fin de semana (2 días) solamente se cuente con personal suplente? 
+
+```{r p6a,echo=TRUE}
+mm=12
+nn=20
+kk=2
+xx=2
+round(dhyper(xx,m=mm,n=nn,k=kk),3)
+```
+
+#### Problema - b
+
+En la farmacia de la clínica, los turnos son de 24h y tal que una persona no puede tener dos turnos seguidos.
+
+La selección de turnos para el fin de semana se hace entre los técnicos en enfermería (TENS) y el personal suplente (PS). La clínica cuenta con 20 TENS y 12 PS.
+
+¿Cuál es la probabilidad que para el siguiente fin de semana (2 días) solamente se cuente con TENS? 
+
+```{r p6b,echo=TRUE}
+mm=20
+nn=12
+kk=2
+xx=2
+round(dhyper(xx,m=mm,n=nn,k=kk),3)
+```
+
+#### Problema - c
+
+En la farmacia de la clínica, los turnos son de 24h y tal que una persona no puede tener dos turnos seguidos.
+
+La selección de turnos para el fin de semana largo (3 días) se hace entre los técnicos en enfermería (TENS) y el personal suplente (PS). La clínica cuenta con 15 TENS y 5 PS.
+
+¿Cuál es la probabilidad que para el siguiente fin de semana largo  se cuente con a lo más un personal suplente? 
+
+```{r p6c,echo=TRUE}
+mm=5
+nn=15
+kk=3
+xx=1
+round(phyper(xx,m=mm,n=nn,k=kk),3)
+```
+
+#### Problema - d
+
+En la farmacia de la clínica, los turnos son de 24h y tal que una persona no puede tener dos turnos seguidos.
+
+La selección de turnos para el fin de semana largo (3 días) se hace entre los técnicos en enfermería (TENS) y el personal suplente (PS). La clínica cuenta con 5 TENS y 2 PS.
+
+¿Cuál es la probabilidad que para el siguiente fin de semana largo  se cuente con a lo más un personal suplente? 
+
+```{r p6d,echo=TRUE}
+mm=2
+nn=5
+kk=3
+xx=1
+round(phyper(xx,m=mm,n=nn,k=kk),3)
+```
